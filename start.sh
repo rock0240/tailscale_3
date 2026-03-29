@@ -48,5 +48,6 @@ else
   echo "WARNING: PUBLIC_URL not set! Self-ping hack is inactive."
 fi
 
-# Keep container alive by waiting on all background processes
-wait -n
+# Keep container alive by running the web server in the foreground instead of waiting
+echo "Bringing keep-alive server to foreground..."
+wait
