@@ -13,7 +13,7 @@ jobs:
       - name: Ping Claw Cloud URL
         run: |
           # Replace this URL with your Claw Cloud Run public URL
-          CLAW_URL="https://your-claw-app.run.claw.cloud/health"
+          CLAW_URL="https://fquudzfhnvim.ap-southeast-1.clawcloudrun.com/"
           
           echo "Pinging $CLAW_URL to prevent sleep..."
           curl -s --connect-timeout 10 $CLAW_URL || true
