@@ -1,0 +1,10 @@
+{
+  "name": "claw-cloud-tailscale",
+  "version": "1.0.0",
+  "description": "Keep-alive server for Claw.cloud Tailscale node",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {}
+}

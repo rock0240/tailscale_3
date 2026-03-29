@@ -1,0 +1,20 @@
+name: Claw Cloud Free Keep-Alive Ping
+
+on:
+  schedule:
+    # Runs every 5 minutes infinitely
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+jobs:
+  ping_claw:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Claw Cloud URL
+        run: |
+          # Replace this URL with your Claw Cloud Run public URL
+          CLAW_URL="https://your-claw-app.run.claw.cloud/health"
+          
+          echo "Pinging $CLAW_URL to prevent sleep..."
+          curl -s --connect-timeout 10 $CLAW_URL || true
+          echo "Claw Cloud container pinged successfully!"
