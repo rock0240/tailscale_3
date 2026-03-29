@@ -31,22 +31,6 @@ tailscaled --state=/var/lib/tailscale/tailscaled.state \
 echo "Starting keep-alive web server to satisfy Cloud Run requirements..."
 npm start &
 
-# 4. 100% FREE SELF-PING HACK TRICK
-# This internal script hits its own external load balancer to fool the platform into thinking user traffic is happening.
-# You MUST provide your app's public URL in the PUBLIC_URL environment variable!
-if [ -n "$PUBLIC_URL" ]; then
-  echo "Initiating Self-Pinging Hack. Target: $PUBLIC_URL"
-  (
-    while true; do
-      # Ping the container every 3 minutes to guarantee it NEVER sleeps
-      sleep 180 
-      curl -s "$PUBLIC_URL/health" > /dev/null
-      echo "Self-ping executed."
-    done
-  ) &
-else
-  echo "WARNING: PUBLIC_URL not set! Self-ping hack is inactive."
-fi
 
 # Keep container alive by running the web server in the foreground instead of waiting
 echo "Bringing keep-alive server to foreground..."
